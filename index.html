@@ -3,10 +3,907 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nightmare Logistics 2025</title>
+  <title>Nightmare Logistics | Classic & Antique Car Runs</title>
+  <style>
+    :root {
+      --bg-dark: #050608;
+      --bg-surface: #111318;
+      --bg-card: #161922;
+      --accent: #e63946;
+      --accent-alt: #ff8c42;
+      --text-main: #f8f9fa;
+      --text-muted: #a3a8b6;
+      --border-soft: #272b39;
+      --max-width: 1180px;
+      --radius-lg: 18px;
+      --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #202439 0, #050608 60%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(5, 6, 8, 0.93);
+      border-bottom: 1px solid var(--border-soft);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.6rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.4rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .brand-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 999px;
+      border: 2px solid var(--accent);
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text h1 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .brand-text span {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.6rem;
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover::after,
+    nav a:focus-visible::after {
+      width: 100%;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.4rem 1.4rem 3.2rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section:last-of-type {
+      margin-bottom: 2rem;
+    }
+
+    .section-heading {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.1rem;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 2.4rem;
+      align-items: center;
+      margin-bottom: 3.2rem;
+    }
+
+    .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.78rem;
+      color: #f1faee;
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      margin-top: 0.8rem;
+      font-size: clamp(2.3rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      margin-top: 1rem;
+      max-width: 36rem;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    .hero-tags {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .tag-pill {
+      border-radius: 999px;
+      padding: 0.32rem 0.9rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      margin-top: 1.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      cursor: pointer;
+      background: none;
+      color: inherit;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease, border-color 0.12s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0, var(--accent-alt) 100%);
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+    }
+
+    .btn-outline {
+      border-color: var(--border-soft);
+      color: var(--text-muted);
+      background: rgba(10, 13, 20, 0.9);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.7);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .hero-meta {
+      margin-top: 1.1rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .hero-meta strong {
+      color: #f1faee;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+    }
+
+    .hero-panel {
+      background: radial-gradient(circle at top, #23263a 0, #111318 52%);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 1.5rem 1.4rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .hero-panel-pill {
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(241, 250, 238, 0.4);
+      font-size: 0.7rem;
+      color: #f1faee;
+    }
+
+    .hero-specs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .spec-card {
+      background: rgba(5, 6, 8, 0.85);
+      border-radius: 12px;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid rgba(84, 94, 128, 0.85);
+    }
+
+    .spec-label {
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      font-size: 0.64rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .spec-value {
+      font-size: 0.9rem;
+    }
+
+    .hero-panel-footer {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* About + Garage + Episodes + Merch */
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.4fr);
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 1.5rem 1.4rem;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.7);
+    }
+
+    .card p {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+    }
+
+    .list {
+      list-style: none;
+      margin-top: 0.8rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .list li {
+      display: flex;
+      gap: 0.55rem;
+      margin-top: 0.4rem;
+    }
+
+    .list-bullet {
+      width: 0.46rem;
+      height: 0.46rem;
+      border-radius: 999px;
+      margin-top: 0.4rem;
+      background: radial-gradient(circle at center, var(--accent), var(--accent-alt));
+      flex-shrink: 0;
+    }
+
+    .subheading {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.1rem;
+      margin-top: 0.4rem;
+    }
+
+    .thumb-card {
+      background: #0b0d13;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #242636;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .thumb-img {
+      position: relative;
+      padding-top: 60%;
+      overflow: hidden;
+    }
+
+    .thumb-img img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-body {
+      padding: 0.7rem 0.85rem 0.8rem;
+      font-size: 0.82rem;
+    }
+
+    .thumb-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .thumb-meta {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .thumb-tag {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .thumb-link:hover .thumb-img img {
+      transform: scale(1.03);
+      transition: transform 0.15s ease;
+    }
+
+    .thumb-link:hover .thumb-body {
+      background: linear-gradient(135deg, rgba(230, 57, 70, 0.07), transparent);
+    }
+
+    /* Merch */
+
+    .price {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 0.15rem;
+    }
+
+    .pill-row {
+      margin-top: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+    }
+
+    .btn-small {
+      font-size: 0.76rem;
+      padding: 0.5rem 1.1rem;
+      margin-top: 0.6rem;
+    }
+
+    /* Contact */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.3fr);
+      gap: 2rem;
+    }
+
+    .contact-form {
+      margin-top: 0.4rem;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.9rem;
+      font-size: 0.86rem;
+    }
+
+    .form-row label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.66rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-muted);
+    }
+
+    .form-row input,
+    .form-row textarea {
+      background: #050608;
+      border-radius: 0.7rem;
+      border: 1px solid var(--border-soft);
+      padding: 0.6rem 0.8rem;
+      color: var(--text-main);
+      font: inherit;
+      resize: vertical;
+      min-height: 42px;
+    }
+
+    .form-row input:focus,
+    .form-row textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(230, 57, 70, 0.5);
+    }
+
+    .form-help {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .form-note {
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border-soft);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-panel {
+        order: -1;
+      }
+
+      .two-column,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      nav ul {
+        display: none;
+      }
+
+      .nav-container {
+        justify-content: flex-start;
+      }
+
+      main {
+        padding-inline: 1.1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Nightmare Logistics 2025<p>Grant Loves Danielle</p></h1>
-  <p>Classic & antique car adventures. Mecum runs. Long drives home.</p>
-</body>
-</html>
+  <header>
+    <div class="nav-container">
+      <a href="#top" class="brand">
+        <div class="brand-logo">
+          <!-- TODO: replace with your actual logo file -->
+          <img src="assets/nightmare-logistics-logo.png" alt="Nightmare Logistics logo" />
+        </div>
+        <div class="brand-text">
+          <h1>Nightmare Logistics</h1>
+          <span>Classic &amp; Antique Runs</span>
+        </div>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#garage">Garage</a></li>
+          <li><a href="#episodes">Episodes</a></li>
+          <li><a href="#merch">Merch</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="hero-kicker">Classic &amp; Antique Car Channel</p>
+        <h2 class="hero-title" id="hero-title">
+          We buy the <span>old iron</span> and drive it home.
+        </h2>
+        <p class="hero-subtitle">
+          From auction lights to late-night gas stations, Nightmare Logistics is about putting real miles on classics—no trailers, no fluff, just the road, the car, and whatever breaks next.
+        </p>
+
+        <div class="hero-tags">
+          <div class="tag-pill">Mecum Runs</div>
+          <div class="tag-pill">Cross-Country Shakedowns</div>
+          <div class="tag-pill">Garage Stories</div>
+        </div>
+
+        <div class="hero-actions">
+          <!-- TODO: replace # with your real YouTube channel URL -->
+          <a class="btn btn-primary" href="#" target="_blank" rel="noopener">
+            Watch on YouTube
+          </a>
+          <a class="btn btn-outline" href="#merch">
+            View Shirts
+          </a>
+        </div>
+
+        <p class="hero-meta">
+          <strong>Now booking feature runs</strong><br />
+          Want your classic in an episode? We’ll run it, film it, and see if it survives the miles.
+        </p>
+      </div>
+
+      <aside class="hero-panel" aria-label="Featured run stats">
+        <div class="hero-panel-header">
+          <span>Sample Run</span>
+          <span class="hero-panel-pill">Auction to Home Base</span>
+        </div>
+        <div class="hero-specs">
+          <div class="spec-card">
+            <div class="spec-label">Route</div>
+            <div class="spec-value">Mecum Auction → Home Garage</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Miles</div>
+            <div class="spec-value">1,000–2,000+ in 2–4 days</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Era</div>
+            <div class="spec-value">’50s–’90s classics &amp; oddballs</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Coverage</div>
+            <div class="spec-value">Video, photos, &amp; story</div>
+          </div>
+        </div>
+        <p class="hero-panel-footer">
+          Every run is a rolling experiment. If it breaks, we fix it on the road—or we make a story about the tow truck.
+        </p>
+      </aside>
+    </section>
+
+    <!-- About + Garage preview -->
+    <section id="about">
+      <div class="two-column">
+        <article class="card">
+          <p class="section-heading">About</p>
+          <h2 class="section-title">What Nightmare Logistics Is About</h2>
+          <p>
+            Nightmare Logistics is a love letter to cars that smell like fuel, rattle at idle, and still deserve another thousand miles. No staged “build reveals”—just real trips in real cars that might or might not make it.
+          </p>
+          <ul class="list">
+            <li>
+              <span class="list-bullet"></span>
+              <span>Buy classics and antiques at auctions like Mecum and drive them home. No trailer, no backup plan.</span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>Document the reality of old-car travel: breakdowns, roadside fixes, midnight diners, and questionable motels.</span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>Share honest reviews of how these cars actually live on the highway—decades after they left the factory.</span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>Bring other owners along for the ride with guest cars, feature runs, and collabs.</span>
+            </li>
+          </ul>
+        </article>
+
+        <aside class="card" id="garage">
+          <p class="section-heading">Garage</p>
+          <h2 class="section-title">Cars We’ve Run</h2>
+          <p class="subheading">A few of the problem children</p>
+          <div class="gallery-grid">
+            <!-- TODO: replace placeholder images & text with your real cars -->
+            <article class="thumb-card">
+              <div class="thumb-img">
+                <img src="assets/cars/car-1.jpg" alt="1970 Chevy truck on desert highway" />
+              </div>
+              <div class="thumb-body">
+                <div class="thumb-title">1970 C10 Desert Run</div>
+                <div class="thumb-meta">Mecum → Home • 1,200 miles • Carb hiccups, vibes immaculate.</div>
+              </div>
+            </article>
+
+            <article class="thumb-card">
+              <div class="thumb-img">
+                <img src="assets/cars/car-2.jpg" alt="Classic sedan at a gas station at night" />
+              </div>
+              <div class="thumb-body">
+                <div class="thumb-title">’90s Highway Couch</div>
+                <div class="thumb-meta">Overdrive barely hanging on, somehow still loved it.</div>
+              </div>
+            </article>
+
+            <article class="thumb-card">
+              <div class="thumb-img">
+                <img src="assets/cars/car-3.jpg" alt="Old 4x4 truck with mountains in the background" />
+              </div>
+              <div class="thumb-body">
+                <div class="thumb-title">High-Country Shakedown</div>
+                <div class="thumb-meta">Cooling system vs. mountain passes. Spoiler: we stopped often.</div>
+              </div>
+            </article>
+          </div>
+          <p class="form-help" style="margin-top:0.6rem;">
+            You can swap these photos and stories with any classics you’ve owned or run. Just replace the images and text in the <code>assets/cars</code> folder and HTML above.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Episodes / YouTube -->
+    <section id="episodes">
+      <p class="section-heading">Episodes</p>
+      <h2 class="section-title">Watch the Runs</h2>
+      <div class="card">
+        <p class="subheading">Selected YouTube Episodes</p>
+        <p>
+          Here are a few runs you can watch start to finish. Click any thumbnail to open the video on YouTube.
+        </p>
+
+        <div class="gallery-grid" style="margin-top:1rem;">
+          <!-- TODO: replace href + img src with real YouTube links & thumbnails -->
+          <a class="thumb-card thumb-link" href="https://www.youtube.com/watch?v=VIDEO_ID_1" target="_blank" rel="noopener">
+            <div class="thumb-img">
+              <img src="assets/videos/episode-1-thumb.jpg" alt="YouTube thumbnail for episode 1" />
+            </div>
+            <div class="thumb-body">
+              <div class="thumb-tag">Episode 01</div>
+              <div class="thumb-title">Auction High, Desert Low Fuel Light</div>
+              <div class="thumb-meta">Mecum pickup → desert stretch → gas stations getting further apart.</div>
+            </div>
+          </a>
+
+          <a class="thumb-card thumb-link" href="https://www.youtube.com/watch?v=VIDEO_ID_2" target="_blank" rel="noopener">
+            <div class="thumb-img">
+              <img src="assets/videos/episode-2-thumb.jpg" alt="YouTube thumbnail for episode 2" />
+            </div>
+            <div class="thumb-body">
+              <div class="thumb-tag">Episode 02</div>
+              <div class="thumb-title">Overdrive? Never Heard of Her</div>
+              <div class="thumb-meta">Long-leg run in a short-geared classic. The tach lived at redline.</div>
+            </div>
+          </a>
+
+          <a class="thumb-card thumb-link" href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank" rel="noopener">
+            <div class="thumb-img">
+              <img src="assets/videos/episode-3-thumb.jpg" alt="YouTube thumbnail for episode 3" />
+            </div>
+            <div class="thumb-body">
+              <div class="thumb-tag">Episode 03</div>
+              <div class="thumb-title">Mountain Passes &amp; Questionable Brakes</div>
+              <div class="thumb-meta">High-altitude cooling issues, brake fade, big views.</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Merch -->
+    <section id="merch">
+      <p class="section-heading">Merch</p>
+      <h2 class="section-title">Nightmare Logistics Shirts</h2>
+      <div class="card">
+        <p class="subheading">Print-on-demand via VistaPrint</p>
+        <p>
+          These are small-batch designs tied to the channel. If you order, we have them printed and shipped through VistaPrint—no warehouse, just on-demand gear for people who get it.
+        </p>
+
+        <div class="gallery-grid" style="margin-top:1rem;">
+          <!-- TODO: swap images, names, prices as needed -->
+          <article class="thumb-card">
+            <div class="thumb-img">
+              <img src="assets/merch/shirt-1.jpg" alt="Nightmare Logistics logo shirt" />
+            </div>
+            <div class="thumb-body">
+              <div class="thumb-title">Logo Garage Tee</div>
+              <div class="thumb-meta">Clean front logo hit, good for wrenching or airport runs.</div>
+              <div class="pill-row">
+                <span class="pill">S–XXL</span>
+                <span class="pill">Black</span>
+              </div>
+              <div class="price">$28</div>
+              <a
+                class="btn btn-outline btn-small"
+                href="mailto:info@nightmarelogistics.com?subject=Order%20-%20Logo%20Garage%20Tee&body=Tell%20me%20your%20size%20and%20shipping%20address."
+              >
+                Order via Email
+              </a>
+            </div>
+          </article>
+
+          <article class="thumb-card">
+            <div class="thumb-img">
+              <img src="assets/merch/shirt-2.jpg" alt="Shirt with old car illustration" />
+            </div>
+            <div class="thumb-body">
+              <div class="thumb-title">“Old Iron, New Miles” Tee</div>
+              <div class="thumb-meta">Graphic inspired by a long-haul auction run.</div>
+              <div class="pill-row">
+                <span class="pill">S–XXL</span>
+                <span class="pill">Heather Grey</span>
+              </div>
+              <div class="price">$30</div>
+              <a
+                class="btn btn-outline btn-small"
+                href="mailto:info@nightmarelogistics.com?subject=Order%20-%20Old%20Iron%20New%20Miles%20Tee&body=Tell%20me%20your%20size%20and%20shipping%20address."
+              >
+                Order via Email
+              </a>
+            </div>
+          </article>
+
+          <article class="thumb-card">
+            <div class="thumb-img">
+              <img src="assets/merch/shirt-3.jpg" alt="Shirt with roadside breakdown graphic" />
+            </div>
+            <div class="thumb-body">
+              <div class="thumb-title">Breakdown Club Tee</div>
+              <div class="thumb-meta">For anyone who’s changed a fuel pump on the shoulder.</div>
+              <div class="pill-row">
+                <span class="pill">Limited</span>
+                <span class="pill">Pre-Order</span>
+              </div>
+              <div class="price">$32</div>
+              <a
+                class="btn btn-outline btn-small"
+                href="mailto:info@nightmarelogistics.com?subject=Order%20-%20Breakdown%20Club%20Tee&body=Tell%20me%20your%20size%20and%20shipping%20address."
+              >
+                Order via Email
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <p class="form-help" style="margin-top:0.8rem;">
+          Every order is handled manually—once you email, we’ll confirm size, color, and shipping, then have your shirt printed and sent through VistaPrint.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <p class="section-heading">Contact</p>
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="contact-grid">
+        <article class="card">
+          <p class="subheading">Feature runs &amp; collabs</p>
+          <p>
+            Want your car featured on a Nightmare Logistics run, want to collab on a build, or just want to talk through a potential cross-country drive in something sketchy? Drop a note below.
+          </p>
+          <ul class="list">
+            <li>
+              <span class="list-bullet"></span>
+              <span>Tell us the year, make, and model of your car.</span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>Share your starting point, destination, and ideal dates.</span>
+            </li>
+            <li>
+              <span class="list-bullet"></span>
+              <span>Let us know if you want it filmed as a full episode or just documented for you.</span>
+            </li>
+          </ul>
+        </article>
+
+        <aside class="card">
+          <form
+            class="contact-form"
+            method="post"
+            action="mailto:info@nightmarelogistics.com"
+            enctype="text/plain"
+          >
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input id="na
+
