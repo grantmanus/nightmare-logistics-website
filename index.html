@@ -745,52 +745,83 @@
     </section>
 
     <!-- Episodes / YouTube -->
-    <section id="episodes">
-      <p class="section-heading">Episodes</p>
-      <h2 class="section-title">Watch the Runs</h2>
-      <div class="card">
-        <p class="subheading">Selected YouTube Episodes</p>
-        <p>
-          Here are a few runs you can watch start to finish. Click any thumbnail to open the video on YouTube.
-        </p>
+<style>
+  /* Thumbnail sizing */
+  .thumb-img {
+    height: 180px;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
 
-        <div class="gallery-grid" style="margin-top:1rem;">
-          <!-- TODO: replace href + img src with real YouTube links & thumbnails -->
-          <a class="thumb-card thumb-link" href="https://www.youtube.com/watch?v=ozxU1UDY5Pc&t=62s" target="_blank" rel="noopener">
-            <div class="thumb-img">
-              <img src="https://img.youtube.com/vi/ozxU1UDY5Pc/hqdefault.jpg" alt="YouTube thumbnail for episode 1" /
-            </div>
-            <div class="thumb-body">
-              <div class="thumb-tag">Episode 01</div>
-              <div class="thumb-title">Auction High, Desert Low Fuel Light</div>
-              <div class="thumb-meta">Mecum pickup → desert stretch → gas stations getting further apart.</div>
-            </div>
-          </a>
+  .thumb-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>
 
-          <a class="thumb-card thumb-link" href="https://www.youtube.com/watch?v=VIDEO_ID_2" target="_blank" rel="noopener">
-            <div class="thumb-img">
-              <img src="assets/videos/episode-2-thumb.jpg" alt="YouTube thumbnail for episode 2" />
-            </div>
-            <div class="thumb-body">
-              <div class="thumb-tag">Episode 02</div>
-              <div class="thumb-title">Overdrive? Never Heard of Her</div>
-              <div class="thumb-meta">Long-leg run in a short-geared classic. The tach lived at redline.</div>
-            </div>
-          </a>
 
-          <a class="thumb-card thumb-link" href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank" rel="noopener">
-            <div class="thumb-img">
-              <img src="assets/videos/episode-3-thumb.jpg" alt="YouTube thumbnail for episode 3" />
-            </div>
-            <div class="thumb-body">
-              <div class="thumb-tag">Episode 03</div>
-              <div class="thumb-title">Mountain Passes &amp; Questionable Brakes</div>
-              <div class="thumb-meta">High-altitude cooling issues, brake fade, big views.</div>
-            </div>
-          </a>
+<!-- Episodes / YouTube -->
+<section id="episodes">
+  <p class="section-heading">Episodes</p>
+  <h2 class="section-title">Watch the Runs</h2>
+  <div class="card">
+    <p class="subheading">Selected YouTube Episodes</p>
+    <p>
+      Here are a few runs you can watch start to finish. Click any thumbnail to open the video on YouTube.
+    </p>
+
+    <div class="gallery-grid" style="margin-top:1rem;">
+
+      <!-- Episode 01 -->
+      <a class="thumb-card thumb-link" 
+         href="https://www.youtube.com/watch?v=ozxU1UDY5Pc&t=62s" 
+         target="_blank" rel="noopener">
+        <div class="thumb-img">
+          <img src="https://img.youtube.com/vi/ozxU1UDY5Pc/hqdefault.jpg" 
+               alt="YouTube thumbnail for episode 1" />
         </div>
-      </div>
-    </section>
+        <div class="thumb-body">
+          <div class="thumb-tag">Episode 01</div>
+          <div class="thumb-title">Auction High, Desert Low Fuel Light</div>
+          <div class="thumb-meta">Mecum pickup → desert stretch → gas stations getting further apart.</div>
+        </div>
+      </a>
+
+      <!-- Episode 02 -->
+      <a class="thumb-card thumb-link" 
+         href="https://www.youtube.com/watch?v=VIDEO_ID_2" 
+         target="_blank" rel="noopener">
+        <div class="thumb-img">
+          <img src="https://img.youtube.com/vi/VIDEO_ID_2/hqdefault.jpg" 
+               alt="YouTube thumbnail for episode 2" />
+        </div>
+        <div class="thumb-body">
+          <div class="thumb-tag">Episode 02</div>
+          <div class="thumb-title">Overdrive? Never Heard of Her</div>
+          <div class="thumb-meta">Long-leg run in a short-geared classic. The tach lived at redline.</div>
+        </div>
+      </a>
+
+      <!-- Episode 03 -->
+      <a class="thumb-card thumb-link" 
+         href="https://www.youtube.com/watch?v=VIDEO_ID_3" 
+         target="_blank" rel="noopener">
+        <div class="thumb-img">
+          <img src="https://img.youtube.com/vi/VIDEO_ID_3/hqdefault.jpg" 
+               alt="YouTube thumbnail for episode 3" />
+        </div>
+        <div class="thumb-body">
+          <div class="thumb-tag">Episode 03</div>
+          <div class="thumb-title">Mountain Passes &amp; Questionable Brakes</div>
+          <div class="thumb-meta">High-altitude cooling issues, brake fade, big views.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
 
     <!-- Merch -->
     <section id="merch">
