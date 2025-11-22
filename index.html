@@ -57,7 +57,7 @@
     .nav-container {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0.6rem 1.4rem;
+      padding: 0.35rem 1.4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -71,17 +71,22 @@
     }
 
     .brand-logo {
-      width: 50px;
-      height: 50px;
-      border-radius: 999px;
-      border: 2px solid var(--accent);
-      overflow: hidden;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  border: 2px solid var(--accent);
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  /* Make it *look* bigger without changing layout height much */
+  transform: scale(1.4);
+  transform-origin: left center;
+}
+
 
     .brand-logo img {
       width: 100%;
@@ -90,9 +95,10 @@
     }
 
     .brand-text h1 {
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  line-height: 1.1;
     }
 
     .brand-text span {
