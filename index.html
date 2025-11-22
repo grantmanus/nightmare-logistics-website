@@ -71,8 +71,8 @@
     }
 
     .brand-logo {
-  width: 50px;
-  height: 50px;
+  width: 70px;        /* bigger, but still reasonable */
+  height: 70px;
   border-radius: 999px;
   border: 2px solid var(--accent);
   overflow: hidden;
@@ -81,10 +81,6 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-
-  /* Make it *look* bigger without changing layout height much */
-  transform: scale(1.4);
-  transform-origin: left center;
 }
 
 
@@ -96,17 +92,15 @@
 
     .brand-text h1 {
   font-size: 1.05rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  line-height: 1.1;
-    }
+  letter-spacing: 0.14em;
+  line-height: 1.05;
+}
 
-    .brand-text span {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-    }
+.brand-text span {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+}
+
 
     nav ul {
       list-style: none;
